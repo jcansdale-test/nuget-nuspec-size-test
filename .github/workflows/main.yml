@@ -32,7 +32,7 @@ jobs:
           EOM
           for i in {1..${{ matrix.files }}}
           do
-            echo '<files include="any/any/postgres/linux/x86_64/bin/clusterdb" buildAction="Content" copyToOutput="true" />' >> ./content/Protoculture.Postgres.Embedded.nuspec
+            echo '<files />' >> ./content/Protoculture.Postgres.Embedded.nuspec
           done
           cat >> ./content/Protoculture.Postgres.Embedded.nuspec << EOM
               </contentFiles>
