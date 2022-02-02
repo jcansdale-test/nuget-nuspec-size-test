@@ -28,18 +28,13 @@ jobs:
               <dependencies>
                 <group targetFramework="net6.0" />
               </dependencies>
-              <contentFiles>
-          EOM
-          
-          cat >> ./content/Protoculture.Postgres.Embedded.nuspec << EOM
-              </contentFiles>
             </metadata>
           </package>
           EOM
           
           for i in {1..${{ matrix.files }}}
           do
-            echo '<!-- <files include="any/any/postgres/linux/x86_64/bin/clusterdb" buildAction="Content" copyToOutput="true" /> -->' >> ./content/Protoculture.Postgres.Embedded.nuspec
+            echo '<!-- xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx -->' >> ./content/Protoculture.Postgres.Embedded.nuspec
           done
 
       - run: |
