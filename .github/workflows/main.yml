@@ -1,0 +1,47 @@
+on:
+  push:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    strategy:
+      fail-fast: false
+      matrix:
+        files: [1, 1000, 1023, 1025, 2000]
+
+    steps:
+      - run: |
+          mkdir content
+          cat > ./content/Protoculture.Postgres.Embedded.nuspec << EOM
+          <?xml version="1.0" encoding="utf-8"?> /
+          <package xmlns="http://schemas.microsoft.com/packaging/2013/05/nuspec.xsd">
+            <metadata>
+              <id>Protoculture.Postgres.Embedded</id>
+              <version>0.1.11-pre</version> 
+              <authors>Alexander Trauzzi</authors>
+              <license type="expression">Apache-2.0</license>
+              <licenseUrl>https://licenses.nuget.org/Apache-2.0</licenseUrl>
+              <description>Embedded-style PostgreSQL for .NET Applications</description>
+              <repository type="git" url="https://github.com/atrauzzi/protoculture-dotnet-postgres" />
+              <dependencies>
+                <group targetFramework="net6.0" />
+              </dependencies>
+              <contentFiles>
+          EOM
+          for i in {1..${{ matrix.files }}}
+          do
+            echo '<files include="any/any/postgres/linux/x86_64/bin/clusterdb" buildAction="Content" copyToOutput="true" />' >> ./content/Protoculture.Postgres.Embedded.nuspec
+          done
+          cat >> ./content/Protoculture.Postgres.Embedded.nuspec << EOM
+              </contentFiles>
+            </metadata>
+          </package>
+          EOM
+      - run: |
+          cd content
+          zip -r ../package.nupkg .
+      - run: ls
+
+      - run: dotnet nuget push package.nupkg -s https://nuget.pkg.github.com/jcansdale -k ${{ secrets.GITHUB_TOKEN }}
