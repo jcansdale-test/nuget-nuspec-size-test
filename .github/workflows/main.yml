@@ -9,7 +9,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        files: [1, 1000, 1023, 1025, 1500, 1800, 2000]
+        files: [1, 1000, 1023, 1025, 1250, 1300, 1500, 1800, 2000]
 
     steps:
       - run: |
