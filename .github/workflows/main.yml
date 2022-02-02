@@ -33,6 +33,7 @@ jobs:
       - run: |
           cd content
           zip -r ../package.nupkg .
-      - run: ls
+ 
+      - run: ls -lh ./content/Protoculture.Postgres.Embedded.nuspec
 
       - run: dotnet nuget push package.nupkg -s https://nuget.pkg.github.com/${{ github.repository_owner }} -k ${{ secrets.GITHUB_TOKEN }}
