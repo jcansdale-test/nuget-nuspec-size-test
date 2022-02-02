@@ -30,15 +30,18 @@ jobs:
               </dependencies>
               <contentFiles>
           EOM
-          for i in {1..${{ matrix.files }}}
-          do
-            echo '<!-- <files include="any/any/postgres/linux/x86_64/bin/clusterdb" buildAction="Content" copyToOutput="true" /> -->' >> ./content/Protoculture.Postgres.Embedded.nuspec
-          done
+          
           cat >> ./content/Protoculture.Postgres.Embedded.nuspec << EOM
               </contentFiles>
             </metadata>
           </package>
           EOM
+          
+          for i in {1..${{ matrix.files }}}
+          do
+            echo '<!-- <files include="any/any/postgres/linux/x86_64/bin/clusterdb" buildAction="Content" copyToOutput="true" /> -->' >> ./content/Protoculture.Postgres.Embedded.nuspec
+          done
+
       - run: |
           cd content
           zip -r ../package.nupkg .
