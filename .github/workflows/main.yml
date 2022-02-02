@@ -20,14 +20,7 @@ jobs:
             <metadata>
               <id>nuget-nuspec-size-test</id>
               <version>0.${{ github.run_number }}.${{ matrix.files }}</version> 
-              <authors>Alexander Trauzzi</authors>
-              <license type="expression">Apache-2.0</license>
-              <licenseUrl>https://licenses.nuget.org/Apache-2.0</licenseUrl>
-              <description>Embedded-style PostgreSQL for .NET Applications</description>
               <repository type="git" url="https://github.com/${{ github.repository }}" />
-              <dependencies>
-                <group targetFramework="net6.0" />
-              </dependencies>
             </metadata>
           </package>
           EOM
